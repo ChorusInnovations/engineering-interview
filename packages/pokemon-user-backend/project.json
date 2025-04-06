@@ -5,6 +5,35 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node -r tsconfig-paths/register -P packages/pokemon-user-backend/tsconfig.app.json packages/pokemon-user-backend/src/modules/database/seeds/seed.ts"
+      }
+    },
+    "migration:gen": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm/cli migration:generate src/modules/database/migrations/{args.name} --pretty -d src/modules/database/db-config.service.ts",
+        "forwardAllArgs": true,
+        "cwd": "{projectRoot}"
+      }
+    },
+    "migration:create": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "../../node_modules/.bin/typeorm migration:create src/modules/database/migrations/{args.name}",
+        "forwardAllArgs": true,
+        "cwd": "{projectRoot}"
+      }
+    },
+    "migration:run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node --project tsconfig.app.json ../../node_modules/typeorm/cli migration:run -d src/modules/database/db-config.service.ts",
+        "cwd": "{projectRoot}"
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",

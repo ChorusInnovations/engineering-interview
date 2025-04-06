@@ -82,6 +82,34 @@ Here are the connection details below.
 - **Host**: localhost
 - **Port**: 5432
 
+## Run database migrations
+
+Within the app's root directory, run:
+
+```bash
+pnpm exec nx run pokemon-user-backend:migration:gen -- --name=init
+```
+
+This will create a new migration script to be run using the existing entities.
+
+Then, run the following:
+
+```bash
+pnpm exec nx run pokemon-user-backend:migration:run
+```
+
+This will use existing migrations to create necessary tables in the database.
+
+If the above gives you an error, delete `some_entity.ts` and the table from database, then run the command again.
+
+## Run seeds to populate tables with base data
+
+```bash
+pnpm exec nx run pokemon-user-backend:seed
+```
+
+This will query [PokeAPI](https://pokeapi.co/api/v2/pokemon) for 150 pokemons and insert them into the database.
+
 ## Prompt
 
 Lets make a Pokémon Team builder!
