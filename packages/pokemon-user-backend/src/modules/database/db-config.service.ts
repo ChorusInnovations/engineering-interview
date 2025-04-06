@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { join } from 'path';
+import { Pokemon } from './entities/pokemon.entity';
 
 const config: DataSourceOptions = {
   type: 'postgres',
@@ -10,7 +11,7 @@ const config: DataSourceOptions = {
   username: 'admin',
   password: 'admin',
   database: 'pokemon',
-  entities: [join(__dirname, 'entities', '*{.ts,.js}')],
+  entities: [Pokemon],
   migrations: [join(__dirname, 'migrations', '*{.ts,.js}')],
 };
 
