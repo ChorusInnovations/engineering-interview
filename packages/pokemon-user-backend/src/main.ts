@@ -16,7 +16,7 @@ async function bootstrap() {
   });
 
   await startDatabase();
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = 3000;

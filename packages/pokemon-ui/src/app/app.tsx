@@ -1,9 +1,16 @@
 import styled from '@emotion/styled';
+import { PokemonList } from '@pokemon-ui/pokemon-team-builder';
 
-import NxWelcome from './nx-welcome';
+const StyledApp = styled.div`
+  font-family: 'Arial', sans-serif;
+`;
 
 export function App() {
-  return <NxWelcome title="pokemon-ui" />
+  return (
+    <StyledApp>
+      <PokemonList />
+    </StyledApp>
+  );
 }
 
 export default App;

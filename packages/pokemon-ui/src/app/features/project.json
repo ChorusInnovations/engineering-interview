@@ -1,0 +1,9 @@
+{
+  "name": "pokemon-team-builder",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pokemon-ui/src/app/features/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project pokemon-team-builder --web",
+  "targets": {}
+}

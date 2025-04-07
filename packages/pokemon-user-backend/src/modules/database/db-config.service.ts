@@ -3,6 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { join } from 'path';
 import { Pokemon } from './entities/pokemon.entity';
+import { Profile } from './entities/profile.entity';
 
 const config: DataSourceOptions = {
   type: 'postgres',
@@ -11,7 +12,7 @@ const config: DataSourceOptions = {
   username: 'admin',
   password: 'admin',
   database: 'pokemon',
-  entities: [Pokemon],
+  entities: [Pokemon, Profile],
   migrations: [join(__dirname, 'migrations', '*{.ts,.js}')],
 };
 

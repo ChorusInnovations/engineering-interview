@@ -1,16 +1,8 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { Profile } from '../../../database/entities/profile.entity';
 
-@Controller('profile')
+@Controller('profiles')
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
@@ -35,21 +27,5 @@ export class ProfileController {
     @Body() data: { pokemonIds: number[] }
   ): Promise<Profile> {
     return this.profileService.updatePokemon(id, data.pokemonIds);
-  }
-
-  @Post(':id/pokemon/bulk')
-  async addMultiplePokemon(
-    @Param('id') id: number,
-    @Body() data: { pokemonIds: number[] }
-  ): Promise<Profile> {
-    return this.profileService.addMultiplePokemon(id, data.pokemonIds);
-  }
-
-  @Delete(':id/pokemon/bulk')
-  async removeMultiplePokemon(
-    @Param('id') id: number,
-    @Body() data: { pokemonIds: number[] }
-  ): Promise<Profile> {
-    return this.profileService.removeMultiplePokemon(id, data.pokemonIds);
   }
 }
