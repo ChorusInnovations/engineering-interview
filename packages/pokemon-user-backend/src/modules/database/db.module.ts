@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
-import { SomeEntity } from './entities/some.entity';
+import { SomeEntity } from './entities/some.entity.js';
 
 @Module({
   imports: [
