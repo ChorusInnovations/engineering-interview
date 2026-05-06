@@ -23,7 +23,7 @@ local_resource(
     'db: migration:up',
     cmd=[
         'bash', '-c',
-        'cd packages/pokemon-user-backend && ../../node_modules/.bin/tsx --require reflect-metadata ../../node_modules/@mikro-orm/cli/cli.js migration:up'
+        'cd packages/pokemon-user-backend && pnpm mikro-orm migration:up'
     ],
     resource_deps=['pokemon-postgres'],
     labels=['database']
@@ -33,7 +33,7 @@ local_resource(
     'db: migration:create',
     cmd=[
         'bash', '-c',
-        'cd packages/pokemon-user-backend && ../../node_modules/.bin/tsx --require reflect-metadata ../../node_modules/@mikro-orm/cli/cli.js migration:create'
+        'cd packages/pokemon-user-backend && pnpm mikro-orm migration:create'
     ],
     resource_deps=['pokemon-postgres'],
     auto_init=False,
