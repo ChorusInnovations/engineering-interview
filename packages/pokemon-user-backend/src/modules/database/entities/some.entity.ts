@@ -5,6 +5,6 @@ export class SomeEntity {
   @PrimaryKey({ type: 'uuid' })
   id: string = crypto.randomUUID();
 
-  @Property()
+  @Property({ type: 'text' })
   someCol!: string;
 }
