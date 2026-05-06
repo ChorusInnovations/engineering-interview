@@ -1,8 +1,12 @@
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { UnderscoreNamingStrategy } from '@mikro-orm/core';
 import { ReflectMetadataProvider } from '@mikro-orm/decorators/legacy';
 import { Migrator } from '@mikro-orm/migrations';
 import { defineConfig } from '@mikro-orm/postgresql';
 import { SomeEntity } from './src/modules/database/entities/some.entity.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   host: process.env['DB_HOST'] ?? 'localhost',
@@ -18,7 +22,7 @@ export default defineConfig({
   extensions: [Migrator],
 
   migrations: {
-    path: './src/migrations',
+    path: join(__dirname, 'src/migrations'),
     tableName: 'mikro_orm_migrations',
     transactional: true,
     allOrNothing: true,

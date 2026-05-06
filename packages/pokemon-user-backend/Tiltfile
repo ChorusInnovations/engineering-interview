@@ -23,15 +23,14 @@ k8s_resource(
 
 local_resource(
     'db: migration:up',
-    cmd='cd packages/pokemon-user-backend && pnpm mikro-orm migration:up',
+    cmd='pnpm mikro-orm migration:up --config ./packages/pokemon-user-backend/mikro-orm.config.mjs',
     resource_deps=['pokemon-postgres'],
-    labels=['database'],
-    dir='../../'
+    labels=['database']
 )
 
 local_resource(
     'db: migration:create',
-    cmd='cd packages/pokemon-user-backend && pnpm mikro-orm migration:create',
+    cmd='pnpm mikro-orm migration:create --config ./packages/pokemon-user-backend/mikro-orm.config.mjs',
     resource_deps=['pokemon-postgres'],
     auto_init=False,
     trigger_mode=TRIGGER_MODE_MANUAL,
