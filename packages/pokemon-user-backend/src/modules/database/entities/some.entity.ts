@@ -1,11 +1,10 @@
-import { defineEntity, p } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/decorators/legacy';
 
-export const SomeEntity = defineEntity({
-  name: 'SomeEntity',
-  properties: {
-    id: p.uuid().primary(),
-    someCol: p.string(),
-  },
-});
+@Entity()
+export class SomeEntity {
+  @PrimaryKey({ type: 'uuid' })
+  id: string = crypto.randomUUID();
 
-export type SomeEntity = typeof SomeEntity extends { prototype: infer T } ? T : never;
+  @Property()
+  someCol!: string;
+}

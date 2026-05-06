@@ -20,3 +20,20 @@ k8s_resource(
     labels=['backend'],
     links=['http://localhost:3000/api']
 )
+
+local_resource(
+    'db: migration:up',
+    cmd='cd packages/pokemon-user-backend && pnpm mikro-orm migration:up',
+    resource_deps=['pokemon-postgres'],
+    labels=['database'],
+    dir='../../'
+)
+
+local_resource(
+    'db: migration:create',
+    cmd='cd packages/pokemon-user-backend && pnpm mikro-orm migration:create',
+    resource_deps=['pokemon-postgres'],
+    auto_init=False,
+    trigger_mode=TRIGGER_MODE_MANUAL,
+    labels=['database']
+)
