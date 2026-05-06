@@ -7,4 +7,4 @@ TSX="$REPO_ROOT/node_modules/.bin/tsx"
 MIKRO_ORM_CLI="$REPO_ROOT/node_modules/@mikro-orm/cli/cli.js"
 
 cd "$PKG_DIR"
-exec "$TSX" "$MIKRO_ORM_CLI" migration:up
+exec "$TSX" --require reflect-metadata "$MIKRO_ORM_CLI" migration:up
