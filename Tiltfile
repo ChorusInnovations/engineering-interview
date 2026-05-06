@@ -21,14 +21,20 @@ include('./packages/pokemon-ui/Tiltfile')
 
 local_resource(
     'db: migration:up',
-    cmd='./scripts/db-migrate.sh',
+    cmd=[
+        'bash', '-c',
+        'cd packages/pokemon-user-backend && ../../node_modules/.bin/tsx --require reflect-metadata ../../node_modules/@mikro-orm/cli/cli.js migration:up'
+    ],
     resource_deps=['pokemon-postgres'],
     labels=['database']
 )
 
 local_resource(
     'db: migration:create',
-    cmd='./scripts/db-migrate-create.sh',
+    cmd=[
+        'bash', '-c',
+        'cd packages/pokemon-user-backend && ../../node_modules/.bin/tsx --require reflect-metadata ../../node_modules/@mikro-orm/cli/cli.js migration:create'
+    ],
     resource_deps=['pokemon-postgres'],
     auto_init=False,
     trigger_mode=TRIGGER_MODE_MANUAL,
