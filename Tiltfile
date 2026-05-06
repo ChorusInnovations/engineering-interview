@@ -13,7 +13,7 @@
 #   Backend   → localhost:3000/api                          [k8s + docker]
 #   Frontend  → localhost:4200                              [local vite dev server]
 
-watch_settings(ignore=['.nx/**', 'dist/**', 'packages/**/vite.config.ts.timestamp-*.mjs'])
+watch_settings(ignore=['.nx/**', 'packages/**/vite.config.ts.timestamp-*.mjs'])
 
 include('./tilt/postgres/Tiltfile')
 include('./packages/pokemon-user-backend/Tiltfile')
