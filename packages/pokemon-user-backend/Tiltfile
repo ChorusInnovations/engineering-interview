@@ -21,24 +21,18 @@ k8s_resource(
     links=['http://localhost:3000/api']
 )
 
-_pkg_dir = os.path.join(os.getcwd(), 'packages/pokemon-user-backend')
-_tsx = os.path.join(os.getcwd(), 'node_modules/.bin/tsx')
-_mikro_orm_cli = os.path.join(os.getcwd(), 'node_modules/@mikro-orm/cli/cli.js')
-
 local_resource(
     'db: migration:up',
-    cmd='%s %s migration:up' % (_tsx, _mikro_orm_cli),
+    cmd='./scripts/db-migrate.sh',
     resource_deps=['pokemon-postgres'],
-    labels=['database'],
-    dir=_pkg_dir
+    labels=['database']
 )
 
 local_resource(
     'db: migration:create',
-    cmd='%s %s migration:create' % (_tsx, _mikro_orm_cli),
+    cmd='./scripts/db-migrate-create.sh',
     resource_deps=['pokemon-postgres'],
     auto_init=False,
     trigger_mode=TRIGGER_MODE_MANUAL,
-    labels=['database'],
-    dir=_pkg_dir
+    labels=['database']
 )
