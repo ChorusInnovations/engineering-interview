@@ -15,6 +15,12 @@
 
 watch_settings(ignore=['.nx/**', 'packages/**/vite.config.ts.timestamp-*.mjs'])
 
+local_resource(
+    'debug: pwd',
+    cmd='pwd',
+    labels=['debug']
+)
+
 include('./tilt/postgres/Tiltfile')
 include('./packages/pokemon-user-backend/Tiltfile')
 include('./packages/pokemon-ui/Tiltfile')
