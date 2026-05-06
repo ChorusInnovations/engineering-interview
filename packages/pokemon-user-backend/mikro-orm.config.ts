@@ -4,10 +4,11 @@ import { UnderscoreNamingStrategy } from '@mikro-orm/core';
 import { ReflectMetadataProvider } from '@mikro-orm/decorators/legacy';
 import { Migrator } from '@mikro-orm/migrations';
 import { defineConfig } from '@mikro-orm/postgresql';
-import { SomeEntity } from './src/modules/database/entities/some.entity.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Entities are loaded by path glob so the CLI discovers them via tsx
+// without needing a compiled dist. This avoids a build step for migrations.
 export default defineConfig({
   host: process.env['DB_HOST'] ?? 'localhost',
   port: parseInt(process.env['DB_PORT'] ?? '5432', 10),
@@ -15,7 +16,8 @@ export default defineConfig({
   password: process.env['DB_PASSWORD'] ?? 'admin',
   dbName: process.env['DB_NAME'] ?? 'pokemon',
 
-  entities: [SomeEntity],
+  entities: [join(__dirname, 'src/**/*.entity.ts')],
+  entitiesTs: [join(__dirname, 'src/**/*.entity.ts')],
   metadataProvider: ReflectMetadataProvider,
   namingStrategy: UnderscoreNamingStrategy,
 
