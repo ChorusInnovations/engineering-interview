@@ -15,12 +15,22 @@
 
 watch_settings(ignore=['.nx/**', 'packages/**/vite.config.ts.timestamp-*.mjs'])
 
-local_resource(
-    'debug: pwd',
-    cmd='pwd',
-    labels=['debug']
-)
-
 include('./tilt/postgres/Tiltfile')
 include('./packages/pokemon-user-backend/Tiltfile')
 include('./packages/pokemon-ui/Tiltfile')
+
+local_resource(
+    'db: migration:up',
+    cmd='./scripts/db-migrate.sh',
+    resource_deps=['pokemon-postgres'],
+    labels=['database']
+)
+
+local_resource(
+    'db: migration:create',
+    cmd='./scripts/db-migrate-create.sh',
+    resource_deps=['pokemon-postgres'],
+    auto_init=False,
+    trigger_mode=TRIGGER_MODE_MANUAL,
+    labels=['database']
+)

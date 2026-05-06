@@ -21,18 +21,3 @@ k8s_resource(
     links=['http://localhost:3000/api']
 )
 
-local_resource(
-    'db: migration:up',
-    cmd='./scripts/db-migrate.sh',
-    resource_deps=['pokemon-postgres'],
-    labels=['database']
-)
-
-local_resource(
-    'db: migration:create',
-    cmd='./scripts/db-migrate-create.sh',
-    resource_deps=['pokemon-postgres'],
-    auto_init=False,
-    trigger_mode=TRIGGER_MODE_MANUAL,
-    labels=['database']
-)
