@@ -7,8 +7,8 @@ local_resource(
 
 docker_build(
     'pokemon-user-backend',
-    '../../dist/packages/pokemon-user-backend',
-    dockerfile='./Dockerfile'
+    '../../',
+    dockerfile='./packages/pokemon-user-backend/Dockerfile'
 )
 
 k8s_yaml(['./k8s/local/deployment.yaml'])

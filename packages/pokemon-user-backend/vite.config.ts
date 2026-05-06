@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [nxViteTsPaths()],
   build: {
     ssr: true,
-    outDir: '../../dist/packages/pokemon-user-backend',
+    outDir: './dist',
     emptyOutDir: true,
     sourcemap: true,
     minify: false,

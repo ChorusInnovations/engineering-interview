@@ -10,11 +10,9 @@ COPY ./package.json ./package.json
 COPY ./pnpm-lock.yaml ./pnpm-lock.yaml
 RUN --mount=type=cache,target=/pnpm/.pnpm-store pnpm install --frozen-lockfile --prod
 
-COPY ./ ./dist
-
 FROM base AS runner
 WORKDIR /app
-COPY --from=deps /app/dist ./dist
 COPY --from=deps /app/node_modules ./node_modules
+COPY ./packages/pokemon-user-backend/dist ./dist
 WORKDIR /app/dist
 ENTRYPOINT ["node", "main.js"]
